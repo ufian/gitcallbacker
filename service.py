@@ -34,9 +34,9 @@ def deploy(service):
         sh.git("pull")
         sh.docker_compose("restart")
 
-    def after_request():
-        with cd('/root/nginx'):
-            sh.docker_compose("restart")
-
-    threading.Timer(1, after_request).start()
+    # def after_request():
+    #     with cd('/root/nginx'):
+    #         sh.docker_compose("restart")
+    #
+    # threading.Timer(1, after_request).start()
     return "Ok"
