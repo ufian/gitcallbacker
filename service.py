@@ -6,7 +6,7 @@ import contextlib
 import os
 import sh
 import threading
-from flask import Flask
+from flask import Flask, abort
 app = Flask(__name__)
 
 
@@ -24,9 +24,13 @@ def cd(path):
 def hello_world():
     return 'Hello, World!'
 
-@app.route('/deploy')
-def deploy():
-    with cd('/root/twitory'):
+@app.route('/deploy/<service>')
+def deploy(service):
+    if service not in {'twitory', 'udmurt'}:
+        abort(404)
+        return
+    
+    with cd('/root/{0}'.format(service)):
         sh.git("pull")
         sh.docker_compose("restart")
 
