@@ -1,0 +1,19 @@
+version: "2"
+
+networks:
+  mynetwork:
+    external:
+      name: web
+
+services:
+  gitcallbacker:
+    image: ufian/callback
+    command: "gunicorn service:app -b 0.0.0.0:80"
+    volumes:
+    - .:/app
+    - /root:/root
+    networks:
+      default: {}
+      mynetwork:
+        aliases:
+          - callback

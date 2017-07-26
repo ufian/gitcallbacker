@@ -1,3 +1,4 @@
 gunicorn==19.7.1
 Flask==0.12.2
 sh==1.12.14
+docker-compose==1.14.0
