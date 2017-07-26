@@ -23,8 +23,8 @@ def cd(path):
 def hello_world():
     return 'Hello, World!'
 
-@app.route('/restart')
-def hello_world():
+@app.route('/deploy')
+def deploy():
     with cd('/root/twitory'):
         sh.git("pull")
         sh.docker_compose("restart")
