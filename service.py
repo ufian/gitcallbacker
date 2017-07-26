@@ -5,6 +5,7 @@ __author__ = 'ufian'
 import contextlib
 import os
 import sh
+import threading
 from flask import Flask
 app = Flask(__name__)
 
@@ -29,5 +30,10 @@ def deploy():
         sh.git("pull")
         sh.docker_compose("restart")
 
-    with cd('/root/nginx'):
-        sh.docker_compose("restart")
+    def after_request():
+        with cd('/root/nginx'):
+            sh.sleep('1')
+            sh.docker_compose("restart")
+
+    threading.Thread(after_request).start()
+    return "Ok"
