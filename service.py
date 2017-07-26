@@ -24,7 +24,7 @@ def cd(path):
 def hello_world():
     return 'Hello, World!'
 
-@app.route('/deploy/<service>')
+@app.route('/deploy/<service>', methods=['GET', 'POST'])
 def deploy(service):
     if service not in {'twitory', 'udmurt'}:
         abort(404)
