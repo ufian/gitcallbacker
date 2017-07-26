@@ -32,8 +32,7 @@ def deploy():
 
     def after_request():
         with cd('/root/nginx'):
-            sh.sleep('1')
             sh.docker_compose("restart")
 
-    threading.Thread(after_request).start()
+    threading.Timer(1, after_request).start()
     return "Ok"
