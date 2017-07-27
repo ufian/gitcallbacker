@@ -34,9 +34,24 @@ def deploy(service):
         sh.git("pull")
         sh.docker_compose("restart")
 
-    # def after_request():
-    #     with cd('/root/nginx'):
-    #         sh.docker_compose("restart")
-    #
-    # threading.Timer(1, after_request).start()
     return "Ok"
+
+
+@app.route('/stop/<service>', methods=['GET', 'POST'])
+def stop(service):
+    if service not in {'udmurt'}:
+        abort(404)
+        return
+    
+    with cd('/root/{0}'.format(service)):
+        sh.docker_compose("stop")
+    
+@app.route('/start/<service>', methods=['GET', 'POST'])
+def stop(service):
+    if service not in {'udmurt'}:
+        abort(404)
+        return
+    
+    with cd('/root/{0}'.format(service)):
+        sh.git("pull")
+        sh.docker_compose("start")
