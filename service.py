@@ -45,6 +45,8 @@ def stop(service):
     
     with cd('/root/{0}'.format(service)):
         sh.docker_compose("stop")
+
+    return "Ok"
     
 @app.route('/start/<service>', methods=['GET', 'POST'])
 def stop(service):
@@ -55,3 +57,5 @@ def stop(service):
     with cd('/root/{0}'.format(service)):
         sh.git("pull")
         sh.docker_compose("start")
+
+    return "Ok"
