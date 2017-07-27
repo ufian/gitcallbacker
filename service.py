@@ -49,7 +49,7 @@ def stop(service):
     return "Ok"
     
 @app.route('/start/<service>', methods=['GET', 'POST'])
-def stop(service):
+def start(service):
     if service not in {'udmurt'}:
         abort(404)
         return
