@@ -26,7 +26,7 @@ def hello_world():
 
 @app.route('/deploy/<service>', methods=['GET', 'POST'])
 def deploy(service):
-    if service not in {'twitory', 'udmurt', 'ccal'}:
+    if service not in {'twitory', 'udmurt', 'ccal', 'tatarin'}:
         abort(404)
         return
     
