@@ -8,6 +8,7 @@ networks:
 services:
   gitcallbacker:
     image: ufian/callback
+    restart: always
     command: "gunicorn service:app -b 0.0.0.0:80"
     volumes:
     - .:/app
